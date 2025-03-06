@@ -95,6 +95,10 @@ app.get('/api/bar-chart', async (req, res) => {
   }
 });
 
+app.get("/", (req, res) => {
+  res.send("Bhai API Working hai");
+});
+
 // Pie chart route
 app.get('/api/pie-chart', async (req, res) => {
   try {
