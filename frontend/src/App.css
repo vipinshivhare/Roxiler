@@ -1,0 +1,155 @@
+.transactions-table {
+  margin-bottom: 2rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+
+th, td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #dee2e6;
+}
+
+th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Add to your existing CSS */
+.navbar-blur {
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+@media (max-width: 600px) {
+  .navbar-title {
+    font-size: 1.5rem;
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Add Montserrat font */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+
+/* Global styles */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #000;
+  color: #fff;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #7a56d6;
+  border-radius: 4px;
+}
+
+/* Animation */
+@keyframes gradient {
+  0% { background-position: 0% center; }
+  50% { background-position: 100% center; }
+  100% { background-position: 0% center; }
+}
+
+/* Card styles */
+.MuiCard-root {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.MuiCard-root:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(122, 86, 214, 0.2) !important;
+}
+
+/* Table styles */
+.transactions-table {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  backdrop-filter: blur(8px);
+}
+
+.MuiTableCell-root {
+  color: white !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.MuiTableHead-root .MuiTableCell-root {
+  background-color: rgba(122, 86, 214, 0.1);
+  font-weight: bold;
+}
+
+.MuiTableRow-root:hover {
+  background-color: rgba(122, 86, 214, 0.1) !important;
+}
+
+/* Chart containers */
+.MuiPaper-root {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white !important;
+}
+
+/* Form controls */
+.MuiInputBase-root {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  color: white !important;
+}
+
+.MuiInputLabel-root {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.MuiOutlinedInput-notchedOutline {
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.MuiSelect-icon {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* Pagination */
+.MuiPagination-root .MuiPaginationItem-root {
+  color: white;
+}
+
+.MuiPagination-root .Mui-selected {
+  background-color: #7a56d6 !important;
+}
+

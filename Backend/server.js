@@ -2,62 +2,109 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
-const axios = require('axios');
-const Product = require('./models/Product');
+const {
+  initializeDatabase,
+  getTransactions,
+  getStatistics,
+  getBarChartData,
+  getPieChartData,
+  getAnalytics
+} = require('./controllers/productController');
 
-// Load environment variables
 dotenv.config();
 
 const app = express();
-
-// Update CORS configuration to be more permissive
 app.use(cors());
-
-// Middleware
 app.use(express.json());
 
 // MongoDB Connection
-const connectDB = async () => {
+mongoose.connect(process.env.MONGODB_URI)
+  .then(() => console.log('MongoDB Connected'))
+  .catch(err => console.error('MongoDB connection error:', err));
+
+// Add this route
+app.get('/api/combined-data', async (req, res) => {
   try {
-    const conn = await mongoose.connect(process.env.MONGODB_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
+    const { month, search, page = 1, perPage = 10 } = req.query;
+    const transactions = await getTransactions({ month, search, page, perPage });
+    const statistics = await getStatistics({ month });
+    const barChart = await getBarChartData({ month });
+    const pieChart = await getPieChartData({ month });
+
+    res.json({
+      transactions,
+      statistics,
+      barChart,
+      pieChart,
+      total: transactions.total
     });
-    console.log(`MongoDB Connected: ${conn.connection.host}`);
   } catch (error) {
-    console.error('MongoDB connection error:', error);
-    process.exit(1);
+    res.status(500).json({ error: error.message });
   }
-};
+});
 
-connectDB();
-
-// Import routes
-const productRoutes = require('./routes/productRoutes');
-app.use('/api', productRoutes);
-
-// Initialize database with seed data
-const initializeDatabase = async () => {
+// Initialize database route
+app.post('/api/initialize-database', async (req, res) => {
   try {
-    const response = await axios.get('https://s3.amazonaws.com/roxiler.com/product_transaction.json');
-    const products = response.data;
-    
-    // Clear existing data
-    await Product.deleteMany({});
-    
-    // Insert new data
-    await Product.insertMany(products);
-    console.log('Database initialized with seed data');
+    const result = await initializeDatabase();
+    res.json(result);
   } catch (error) {
-    console.error('Error initializing database:', error);
+    res.status(500).json({ error: error.message });
   }
-};
+});
 
-// Initialize database on server start
-initializeDatabase();
+// Add the analytics endpoint
+// Fix the analytics endpoint
+// Update the analytics endpoint
+app.get('/api/analytics', async (req, res) => {
+  try {
+    const result = await getAnalytics(req.query);
+    res.json(result);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 
-// Update port to match frontend expectations
-const PORT = process.env.PORT || 5000;  // Changed from 5050 to 5000
+// Transactions route
+app.get('/api/transactions', async (req, res) => {
+  try {
+    const transactions = await getTransactions(req.query);
+    res.json(transactions);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Statistics route
+app.get('/api/statistics', async (req, res) => {
+  try {
+    const statistics = await getStatistics(req.query);
+    res.json(statistics);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Bar chart route
+app.get('/api/bar-chart', async (req, res) => {
+  try {
+    const barChartData = await getBarChartData(req.query);
+    res.json(barChartData);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Pie chart route
+app.get('/api/pie-chart', async (req, res) => {
+  try {
+    const pieChartData = await getPieChartData(req.query);
+    res.json(pieChartData);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+const PORT = process.env.PORT || 5030;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
