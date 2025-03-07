@@ -26,7 +26,7 @@ th {
   gap: 1rem;
 }
 
-/* Add to your existing CSS */
+
 .navbar-blur {
   background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(8px);

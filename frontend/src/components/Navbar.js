@@ -12,7 +12,7 @@ const Navbar = () => (
       top: '20px',
       left: '50%',
       transform: 'translateX(-50%)',
-      width: '98%', // Increased from 95% to 98%
+      width: '98%', 
       maxWidth: '1920px',
       borderRadius: '16px',
       '&::before': {
@@ -26,17 +26,17 @@ const Navbar = () => (
     }}
   >
     <Container 
-      maxWidth={false} // Changed from 'lg' to false
+      maxWidth={false} 
       sx={{ 
         width: '100%',
-        px: { xs: 2, md: 3 } // Added consistent padding
+        px: { xs: 2, md: 3 }
       }}
     >
       <Toolbar sx={{ 
         height: '70px', 
         position: 'relative',
         width: '100%',
-        px: { xs: 1, md: 2 } // Reduced padding
+        px: { xs: 1, md: 2 } 
       }}>
         <img 
           src="/logo.png"
@@ -55,7 +55,7 @@ const Navbar = () => (
           display: 'flex',
           justifyContent: { xs: 'flex-end', md: 'center' },
           position: 'relative',
-          pl: { xs: '150px', md: '160px' }, // Added left padding to avoid logo overlap
+          pl: { xs: '150px', md: '160px' },
           pr: { xs: 2, md: 0 },
           '&::before': {
             content: '""',
@@ -71,8 +71,8 @@ const Navbar = () => (
             variant="h4" 
             component="h1"
             sx={{
-              fontSize: { xs: '1.4rem', md: '2.5rem' }, // Slightly reduced mobile font size
-              textAlign: { xs: 'right', md: 'center' }, // Added text alignment
+              fontSize: { xs: '1.4rem', md: '2.5rem' }, 
+              textAlign: { xs: 'right', md: 'center' }, 
               fontWeight: 'bold',
               fontFamily: 'Montserrat, sans-serif',
               background: 'linear-gradient(to right, #7a56d6, rgba(255, 255, 255, 0.8), #7a56d6)',

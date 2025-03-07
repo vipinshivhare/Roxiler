@@ -73,18 +73,18 @@ function App() {
       maxWidth={false} 
       sx={{ 
         py: 4,
-        px: { xs: 2, md: 3 }, // Added consistent padding
+        px: { xs: 2, md: 3 }, 
         minHeight: '100vh',
         background: 'linear-gradient(180deg, #000000 0%, #1a1a1a 100%)',
         width: '100%',
-        overflow: 'hidden' // Prevent horizontal scroll
+        overflow: 'hidden' 
       }}
     >
       <Navbar />
       <Box sx={{ 
         mt: 12,
         width: '100%',
-        '& > *': { // Apply to all direct children
+        '& > *': { 
           width: '100%',
           maxWidth: '100%'
         }
