@@ -1,5 +1,5 @@
 import React from 'react';
-import { TableContainer, Paper, Table, TableHead, TableBody, TableRow, TableCell, Typography } from '@mui/material';
+import { TableContainer, Paper, Table, TableHead, TableBody, TableRow, TableCell, Typography, Box } from '@mui/material';
 
 const tableHeadingStyle = {
   color: '#7a56d6',
@@ -10,9 +10,25 @@ const tableHeadingStyle = {
 
 const TransactionsTable = ({ transactions }) => (
   <>
-    <Typography variant="h6" sx={tableHeadingStyle}>
-      Transaction Details
-    </Typography>
+    <Box sx={{ 
+      display: 'flex', 
+      justifyContent: 'space-between', 
+      alignItems: 'center',
+      mb: 2 
+    }}>
+      <Typography variant="h6" sx={tableHeadingStyle}>
+        Transaction Details
+      </Typography>
+      <Typography 
+        variant="subtitle1" 
+        sx={{ 
+          color: 'rgba(255, 255, 255, 0.7)',
+          fontStyle: 'italic'
+        }}
+      >
+        Created by VIPIN SHIVHARE
+      </Typography>
+    </Box>
     <TableContainer component={Paper} sx={{ 
       mb: 4,
       background: 'linear-gradient(135deg, rgba(122, 86, 214, 0.15) 0%, rgba(76, 48, 158, 0.25) 100%)',
